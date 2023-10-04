@@ -5,7 +5,6 @@ function App() {
     <div className="h-screen">
       <Calendar />
     </div>
-
   )
 }
 
