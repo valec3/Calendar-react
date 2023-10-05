@@ -2,8 +2,8 @@ import { useState,useContext, useEffect } from "react"
 import HeaderCalendar from "./HeaderCalendar"
 import MonthCalendar from "./MonthCalendar"
 import SideBarCalendar from "./SideBarCalendar"
-import { getDaysMonth } from "../utilities"
-import GlobalContext from "../context/GlobalContext"
+import { getDaysMonth } from "../../utilities"
+import GlobalContext from "../../context/GlobalContext"
 
 const Calendar = () => {
     const [currentMonth, setCurrentMonth] = useState(getDaysMonth())
