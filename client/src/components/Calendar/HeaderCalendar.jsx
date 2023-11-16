@@ -16,7 +16,7 @@ const HeaderCalendar = () => {
         setMonthIndex(monthIndex+1)
     }
     return (
-        <header className="px-4 pl-0 py-2 flex items-center border-[0.5px] border-b-slate-200">
+        <header className="px-4 pl-0 py-2 flex items-center border-[0.5px] border-b-slate-200 max-md:flex-wrap">
             <button className='bg-transparent rounded-full hover:bg-gray-200 w-12 h-12 border-none'>
                 <MenuIcon/>
             </button>

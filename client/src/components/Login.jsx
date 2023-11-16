@@ -1,16 +1,39 @@
 import heroLogin from '../assets/hero-login.png'
-import {Link}  from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import {Link,useNavigate}  from 'react-router-dom'
+import { loginUser,getUserData } from '../services/api'
+import { useContext, useState } from 'react'
+import GlobalContext from '../context/GlobalContext'
 
 const Login = () => {
+    const {setUserInfo} = useContext(GlobalContext)
     const navigate = useNavigate()
+    const [user, setUser] = useState({
+        email: '',
+        password: ''
+    })
+
     const handleSubmitForm = (e) => {
         e.preventDefault()
-        console.log('Formulario enviado')
-        setTimeout(() => {
-            console.log('Redireccionando')
-        }, 2000)
-        navigate('/calendar')
+        console.log('Formulario enviado', user)
+        
+        const login = async () => {
+            const dataUserApi = await loginUser(user)
+            console.log(dataUserApi)
+            const dataUser = await getUserData(dataUserApi.token)
+            setTimeout(() => {
+                setUser({
+                    email: '',
+                    password: ''
+                })
+            }, 2000)
+            if(dataUserApi.user) {
+                setUserInfo(dataUser)
+                localStorage.setItem('token', dataUserApi.token)
+                navigate('/calendar')
+            }
+        }
+        login()
+
     }
     return (
         <div className="flex h-screen gap-0">
@@ -24,6 +47,7 @@ const Login = () => {
                         <div className="flex gap-2 p-2 bg-slate-50 rounded-sm items-center shadow-md">
                             <img src='' alt="G" />
                             <input 
+                                onChange={(e) => setUser({...user, email: e.target.value})}
                                 type="email" 
                                 required
                                 placeholder="Ingresa tu correo electrónico"
@@ -36,6 +60,7 @@ const Login = () => {
                         <div className="flex gap-2 p-2 bg-slate-50 rounded-sm items-center shadow-md">
                             <img src='' alt="G" />
                             <input 
+                                onChange={(e) => setUser({...user, password: e.target.value})}
                                 type="password" 
                                 required
                                 placeholder="Ingresa tu contraseña"

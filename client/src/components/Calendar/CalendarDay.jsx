@@ -4,10 +4,11 @@ import GlobalContext from "../../context/GlobalContext"
 import dayjs from "dayjs"
 
 const CalendarDay = ({day}) => {
-    const {setDaySelected} = useContext(GlobalContext)
+    const {setDaySelected,setShowEventModal} = useContext(GlobalContext)
 
     const handleClickDayMonth = (day) => {
         setDaySelected(day)
+        setShowEventModal(true)
     }   
 
     const colorIsToday = day.format('DDMMYYYY') === dayjs().format('DDMMYYYY')
