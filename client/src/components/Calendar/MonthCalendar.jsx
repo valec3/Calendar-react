@@ -16,7 +16,7 @@ const MonthCalendar = ({month}) => {
                         ))
                     }
                 </div>
-                <div className="grid grid-cols-7 flex-1">
+                <div className="grid grid-cols-7 grid-rows-5 flex-1">
                     {
                         month.map((row, i) => (
                             row.map((day, j) => (

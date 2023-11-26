@@ -10,6 +10,10 @@ const GlobalContext = React.createContext({
     setUserInfo:()=>{},
     showEventModal:false,
     setShowEventModal:()=>{},
+    dispatchSavedEvents:({type,payload})=>{},
+    savedEvents : [],
+    setSelectedEvent:()=>{},
+    selectedEvent:null,
 })
 
 export default GlobalContext;
